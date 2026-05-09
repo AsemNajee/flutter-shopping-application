@@ -1,8 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:self_built_market/pages/home/home_page.dart';
+import 'package:self_built_market/providers/favorite_provider.dart';
 
 void main() {
-  runApp(const Main());
+  runApp(
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => FavoriteProvider()),
+      ],
+      child: const Main(),
+    ),
+  );
 }
 
 class Main extends StatelessWidget {
@@ -10,8 +19,6 @@ class Main extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      home: HomePage(),
-    );
+    return MaterialApp(home: HomePage());
   }
 }

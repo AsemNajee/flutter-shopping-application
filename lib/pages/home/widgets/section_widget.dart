@@ -1,15 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:self_built_market/data/category.dart';
 import 'package:self_built_market/data/product.dart';
+import 'package:self_built_market/pages/category_products/category_products_page.dart';
 import 'package:self_built_market/pages/home/widgets/product_card.dart';
-import 'package:self_built_market/pages/product_details/product_details_page.dart';
 
 class SectionWidget extends StatelessWidget {
-  const SectionWidget({super.key, required this.products});
-
-  final List<Product> products;
+  const SectionWidget({super.key, required this.category});
+  final Category category;
 
   @override
   Widget build(BuildContext context) {
+    final List<Product> products = category.products;
     return Container(
       padding: .all(8),
       color: Colors.amber,
@@ -32,7 +33,16 @@ class SectionWidget extends StatelessWidget {
                   ],
                 ),
               ),
-              IconButton(onPressed: () {}, icon: Icon(Icons.arrow_forward_ios)),
+              IconButton(
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (c) => CategoryProductsPage(category: category),
+                    ),
+                  );
+                },
+                icon: Icon(Icons.arrow_forward_ios),
+              ),
             ],
           ),
           SizedBox(height: 20),

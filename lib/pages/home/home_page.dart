@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:self_built_market/data/categories_repository.dart';
 import 'package:self_built_market/data/category.dart';
 import 'package:self_built_market/data/product.dart';
-import 'package:self_built_market/pages/category_products/category_products_page.dart';
+import 'package:self_built_market/pages/categories/categories_page.dart';
+import 'package:self_built_market/pages/favorite/favorite_page.dart';
 import 'package:self_built_market/pages/home/widgets/section_widget.dart';
 
 class HomePage extends StatefulWidget {
-  HomePage({super.key});
+  const HomePage({super.key});
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -15,20 +17,7 @@ class _HomePageState extends State<HomePage> {
   int _currentTap = 0;
   PageController controller = PageController();
 
-  final List<Product> products = [
-    Product("Car", 10000, 5, "assets/images/car.png"),
-    Product("Car", 10000, 5, "assets/images/car.png"),
-    Product("Car", 10000, 5, "assets/images/car.png"),
-    Product("Car", 10000, 5, "assets/images/car.png"),
-    Product("Car", 10000, 5, "assets/images/car.png"),
-  ];
-
-  List<Category> get categories => [
-    Category("Cars and Bikes", "motors rides free and less", 1, products),
-    Category("Cars and Bikes", "motors rides free and less", 1, products),
-    Category("Cars and Bikes", "motors rides free and less", 1, products),
-    Category("Cars and Bikes", "motors rides free and less", 1, products),
-  ];
+  List<Category> get categories => CategoriesRepository.categoriesWithProducts;
 
   void changeTap(int tap) {
     setState(() {
@@ -53,11 +42,11 @@ class _HomePageState extends State<HomePage> {
           ListView.builder(
             itemCount: categories.length,
             itemBuilder: (context, index) =>
-                SectionWidget(products: categories[index].products),
+                SectionWidget(category: categories[index]),
           ),
-          CategoryProductsPage(categories: categories,),
-          Container(child: Text("Page Number 2")),
-          Container(child: Text("Page Number 3")),
+          CategoriesPage(categories: categories,),
+          FavoritePage(),
+          Container(child: Text("Cart Page")),
           Container(child: Text("Page Number 4")),
         ],
       ),
