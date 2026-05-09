@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:self_built_market/data/product.dart';
+import 'package:self_built_market/data/model/product.dart';
 import 'package:self_built_market/pages/product_details/product_details_page.dart';
 
 class ProductCard extends StatelessWidget {
@@ -43,7 +43,7 @@ class ProductCard extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        "Product title",
+                        product.title,
                         style: TextStyle(fontWeight: .bold, fontSize: 16),
                       ),
                     ],

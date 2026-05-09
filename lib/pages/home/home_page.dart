@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:self_built_market/data/categories_repository.dart';
-import 'package:self_built_market/data/category.dart';
-import 'package:self_built_market/data/product.dart';
+import 'package:self_built_market/data/repositories/categories_repository.dart';
+import 'package:self_built_market/data/model/category.dart';
 import 'package:self_built_market/pages/categories/categories_page.dart';
 import 'package:self_built_market/pages/favorite/favorite_page.dart';
 import 'package:self_built_market/pages/home/widgets/section_widget.dart';
@@ -17,7 +16,7 @@ class _HomePageState extends State<HomePage> {
   int _currentTap = 0;
   PageController controller = PageController();
 
-  List<Category> get categories => CategoriesRepository.categoriesWithProducts;
+  List<Category> get categories => CategoriesRepository.getCategories;
 
   void changeTap(int tap) {
     setState(() {

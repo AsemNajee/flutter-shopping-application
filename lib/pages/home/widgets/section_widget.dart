@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:self_built_market/data/category.dart';
-import 'package:self_built_market/data/product.dart';
+import 'package:self_built_market/data/model/category.dart';
+import 'package:self_built_market/data/model/product.dart';
+import 'package:self_built_market/data/repositories/categories_repository.dart';
 import 'package:self_built_market/pages/category_products/category_products_page.dart';
 import 'package:self_built_market/pages/home/widgets/product_card.dart';
 
@@ -10,7 +11,9 @@ class SectionWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<Product> products = category.products;
+    final List<Product> products = CategoriesRepository.getProductsOfCategory(
+      category,
+    );
     return Container(
       padding: .all(8),
       color: Colors.amber,
@@ -26,10 +29,10 @@ class SectionWidget extends StatelessWidget {
                   crossAxisAlignment: .start,
                   children: [
                     Text(
-                      "Section title",
+                      category.title,
                       style: TextStyle(fontSize: 20, fontWeight: .bold),
                     ),
-                    Text("Section description"),
+                    Text(category.description),
                   ],
                 ),
               ),

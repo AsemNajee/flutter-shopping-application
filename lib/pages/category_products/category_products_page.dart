@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:self_built_market/data/category.dart';
+import 'package:self_built_market/data/repositories/categories_repository.dart';
+import 'package:self_built_market/data/model/category.dart';
+import 'package:self_built_market/data/model/product.dart';
 import 'package:self_built_market/pages/home/widgets/product_card.dart';
 
 class CategoryProductsPage extends StatelessWidget {
@@ -8,12 +10,13 @@ class CategoryProductsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    List<Product> products = CategoriesRepository.getProductsOfCategory(category);
     return Scaffold(
       appBar: AppBar(title: Text(category.title)),
       body: ListView.builder(
-        itemCount: category.products.length,
+        itemCount: products.length,
         itemBuilder: (ctx, i) {
-        return ProductCard(product: category.products[i]);
+        return ProductCard(product: products[i]);
       }),
     );
   }

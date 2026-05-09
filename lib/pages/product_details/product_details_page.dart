@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:self_built_market/data/product.dart';
+import 'package:self_built_market/data/model/product.dart';
 import 'package:self_built_market/providers/favorite_provider.dart';
 
 class ProductDetailsPage extends StatelessWidget {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:self_built_market/data/category.dart';
+import 'package:self_built_market/data/model/category.dart';
 import 'package:self_built_market/pages/category_products/category_products_page.dart';
 
 class CategoriesPage extends StatelessWidget {
