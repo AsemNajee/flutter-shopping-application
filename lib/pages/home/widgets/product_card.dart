@@ -31,7 +31,7 @@ class ProductCard extends StatelessWidget {
               width: .infinity,
               child: ClipRRect(
                 borderRadius: .circular(8),
-                child: Image.asset("assets/images/car.png", fit: .cover),
+                child: Image.asset(product.image, fit: .cover),
               ),
             ),
             Container(
@@ -44,7 +44,8 @@ class ProductCard extends StatelessWidget {
                     children: [
                       Text(
                         product.title,
-                        style: TextStyle(fontWeight: .bold, fontSize: 16),
+                        style: TextStyle(fontWeight: .bold, fontSize: 14),
+                        overflow: .ellipsis,
                       ),
                     ],
                   ),

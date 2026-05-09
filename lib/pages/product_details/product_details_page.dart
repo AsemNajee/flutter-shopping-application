@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:self_built_market/data/model/product.dart';
+import 'package:self_built_market/providers/cart_provider.dart';
 import 'package:self_built_market/providers/favorite_provider.dart';
 
 class ProductDetailsPage extends StatelessWidget {
@@ -9,7 +10,8 @@ class ProductDetailsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    FavoriteProvider provider = context.watch<FavoriteProvider>();
+    FavoriteProvider favoriteProvider = context.watch<FavoriteProvider>();
+    CartProvider cartProvider = context.watch<CartProvider>();
     return Scaffold(
       appBar: AppBar(),
       body: Column(
@@ -56,7 +58,9 @@ class ProductDetailsPage extends StatelessWidget {
                     foregroundColor: .all(Colors.white),
                     alignment: .center,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    cartProvider.addToCart(product: product);
+                  },
                   child: Container(
                     padding: .all(16),
                     child: Row(
@@ -72,13 +76,13 @@ class ProductDetailsPage extends StatelessWidget {
               ),
               IconButton(
                 onPressed: () {
-                  provider.switchFavorite(product);
+                  favoriteProvider.switchFavorite(product);
                 },
                 icon: Icon(
-                  provider.isFavorite(product)
+                  favoriteProvider.isFavorite(product)
                       ? Icons.favorite
                       : Icons.favorite_outline,
-                  color: provider.isFavorite(product)
+                  color: favoriteProvider.isFavorite(product)
                       ? Colors.green
                       : Colors.black,
                 ),

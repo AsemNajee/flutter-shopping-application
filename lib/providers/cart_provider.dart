@@ -27,5 +27,8 @@ class CartProvider extends ChangeNotifier {
     } else {
       _carts[product.id] = CartItem(product: product, count: count);
     }
+    notifyListeners();
   }
+
+  Map<int, CartItem> get cartProducts => _carts;
 }

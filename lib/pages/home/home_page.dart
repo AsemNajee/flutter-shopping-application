@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:self_built_market/data/repositories/categories_repository.dart';
 import 'package:self_built_market/data/model/category.dart';
+import 'package:self_built_market/pages/cart/cart_page.dart';
 import 'package:self_built_market/pages/categories/categories_page.dart';
 import 'package:self_built_market/pages/favorite/favorite_page.dart';
 import 'package:self_built_market/pages/home/widgets/section_widget.dart';
@@ -45,7 +46,7 @@ class _HomePageState extends State<HomePage> {
           ),
           CategoriesPage(categories: categories,),
           FavoritePage(),
-          Container(child: Text("Cart Page")),
+          CartPage(),
           Container(child: Text("Page Number 4")),
         ],
       ),

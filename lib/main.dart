@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:self_built_market/pages/home/home_page.dart';
+import 'package:self_built_market/providers/cart_provider.dart';
 import 'package:self_built_market/providers/favorite_provider.dart';
 
 void main() {
@@ -8,6 +9,7 @@ void main() {
     MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => FavoriteProvider()),
+        ChangeNotifierProvider(create: (context) => CartProvider()),
       ],
       child: const Main(),
     ),
