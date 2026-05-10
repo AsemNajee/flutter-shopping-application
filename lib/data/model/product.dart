@@ -14,4 +14,6 @@ class Product {
     required this.image,
     required this.categoryId
   }) : id = autoIncrement++;
+
+  double get priceWithDiscount => (price - (price * (discount / 100))).roundToDouble();
 }

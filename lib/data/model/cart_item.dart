@@ -9,4 +9,8 @@ class CartItem {
   void increas({int count = 1}){
     this.count += count;
   }
+
+  double get totalPrice => (count * product.priceWithDiscount).roundToDouble();
+
+  double get totalPriceWithoutDiscount => (count * product.price).roundToDouble();
 }

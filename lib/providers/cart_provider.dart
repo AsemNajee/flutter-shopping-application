@@ -9,7 +9,7 @@ class CartProvider extends ChangeNotifier {
   double get totalPriceWithoutDiscount {
     double totalPrice = 0;
     _carts.forEach((k, v) => totalPrice += v.product.price);
-    return totalPrice;
+    return totalPrice.roundToDouble();
   }
 
   double get totalPriceWithDiscount {
@@ -18,7 +18,7 @@ class CartProvider extends ChangeNotifier {
       (k, v) => totalPrice +=
           (v.product.price - (v.product.price * (v.product.discount / 100))),
     );
-    return totalPrice;
+    return totalPrice.roundToDouble();
   }
 
   void addToCart({required Product product, int count = 1}) {
@@ -28,6 +28,13 @@ class CartProvider extends ChangeNotifier {
       _carts[product.id] = CartItem(product: product, count: count);
     }
     notifyListeners();
+  }
+
+  void removeCart({required int productId}){
+    if(_carts.containsKey(productId)){
+      _carts.remove(productId);
+      notifyListeners();
+    }
   }
 
   Map<int, CartItem> get cartProducts => _carts;

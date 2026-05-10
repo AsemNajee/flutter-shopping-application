@@ -40,7 +40,7 @@ class ProductDetailsPage extends StatelessWidget {
                   ),
                 ),
                 Text(
-                  "${product.price - (product.price * (product.discount / 100))}\$",
+                  "${product.priceWithDiscount}\$",
                   style: TextStyle(color: Colors.green),
                 ),
               ],

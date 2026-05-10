@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:self_built_market/data/model/product.dart';
 import 'package:self_built_market/pages/product_details/product_details_page.dart';
@@ -43,7 +45,9 @@ class ProductCard extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        product.title,
+                        product.title
+                        // .substring(0, min(19, product.title.length))
+                        ,
                         style: TextStyle(fontWeight: .bold, fontSize: 14),
                         overflow: .ellipsis,
                       ),
@@ -52,8 +56,8 @@ class ProductCard extends StatelessWidget {
                   Row(
                     mainAxisAlignment: .spaceBetween,
                     children: [
-                      Text("20\$", style: TextStyle(decoration: .lineThrough)),
-                      Text("18\$"),
+                      Text("${product.price}\$", style: TextStyle(decoration: .lineThrough)),
+                      Text("${product.priceWithDiscount}\$"),
                     ],
                   ),
                 ],
