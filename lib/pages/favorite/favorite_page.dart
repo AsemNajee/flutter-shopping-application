@@ -11,12 +11,14 @@ class FavoritePage extends StatelessWidget {
     FavoriteProvider provider = context.watch<FavoriteProvider>();
 
     return Scaffold(
-      body: ListView.builder(
-        itemCount: provider.favoriteProducts.length,
-        itemBuilder: (ctx, i) {
-          return ProductCard(product: provider.favoriteProducts[i]);
-        },
-      ),
+      body: provider.favoriteProducts.isEmpty
+          ? Center(child: Text("No Favorites"))
+          : ListView.builder(
+              itemCount: provider.favoriteProducts.length,
+              itemBuilder: (ctx, i) {
+                return ProductCard(product: provider.favoriteProducts[i]);
+              },
+            ),
     );
   }
 }

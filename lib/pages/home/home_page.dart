@@ -5,6 +5,7 @@ import 'package:self_built_market/pages/cart/cart_page.dart';
 import 'package:self_built_market/pages/categories/categories_page.dart';
 import 'package:self_built_market/pages/favorite/favorite_page.dart';
 import 'package:self_built_market/pages/home/widgets/section_widget.dart';
+import 'package:self_built_market/pages/profile_page/profile_page.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -44,10 +45,10 @@ class _HomePageState extends State<HomePage> {
             itemBuilder: (context, index) =>
                 SectionWidget(category: categories[index]),
           ),
-          CategoriesPage(categories: categories,),
+          CategoriesPage(categories: categories),
           FavoritePage(),
           CartPage(),
-          Container(child: Text("Page Number 4")),
+          ProfilePage(),
         ],
       ),
 
@@ -65,7 +66,7 @@ class _HomePageState extends State<HomePage> {
         },
         items: [
           BottomNavigationBarItem(
-            icon: Icon(Icons.maps_home_work_rounded),
+            icon: Icon(Icons.maps_home_work_outlined),
             label: "Home",
           ),
           BottomNavigationBarItem(
@@ -80,7 +81,10 @@ class _HomePageState extends State<HomePage> {
             icon: Icon(Icons.shopping_bag_outlined),
             label: "Cart",
           ),
-          BottomNavigationBarItem(icon: Icon(Icons.home), label: "Profile"),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.supervised_user_circle_outlined),
+            label: "Profile",
+          ),
         ],
       ),
     );

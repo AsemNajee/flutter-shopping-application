@@ -31,10 +31,14 @@ class CartProvider extends ChangeNotifier {
   }
 
   void removeCart({required int productId}){
-    if(_carts.containsKey(productId)){
+    if(isInCart(productId: productId)){
       _carts.remove(productId);
       notifyListeners();
     }
+  }
+
+  bool isInCart({required int productId}){
+    return _carts.containsKey(productId);
   }
 
   Map<int, CartItem> get cartProducts => _carts;

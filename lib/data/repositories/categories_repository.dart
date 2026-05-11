@@ -20,15 +20,15 @@ class CategoriesRepository {
     description: "eat best food",
   );
 
-  static List<Category> get getCategories => [
+  static final List<Category> _categories = [
     _carsCategory,
     _clothesCategory,
     _booksCategory,
     _kitchenCategory,
   ];
 
-  static List<Product> get allProducts => [
-    // منتجات السيارات والدراجات
+  static final List<Product> _products = [
+    // منتجات السيارات والدراجاتs
     Product(
       title: "Mercedes S-Class 2024",
       price: 85000,
@@ -239,6 +239,11 @@ class CategoriesRepository {
     //   categoryId: _kitchenCategory.id,
     // ),
   ];
+
+
+  static List<Product> get allProducts => _products;
+
+  static List<Category> get getCategories => _categories;
 
   static List<Product> getProductsOfCategory(Category category) {
     return allProducts.where((p) => p.categoryId == category.id).toList();

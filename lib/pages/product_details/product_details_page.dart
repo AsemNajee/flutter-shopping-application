@@ -13,7 +13,12 @@ class ProductDetailsPage extends StatelessWidget {
     FavoriteProvider favoriteProvider = context.watch<FavoriteProvider>();
     CartProvider cartProvider = context.watch<CartProvider>();
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text(product.title),
+        actions: [
+          Icon(Icons.shopping_bag_outlined)
+        ],
+      ),
       body: Column(
         crossAxisAlignment: .start,
         children: [
@@ -54,11 +59,11 @@ class ProductDetailsPage extends StatelessWidget {
                 margin: .all(16),
                 child: ElevatedButton(
                   style: ButtonStyle(
-                    backgroundColor: .all(Colors.green),
+                    backgroundColor: cartProvider.isInCart(productId: product.id) ? .all(Colors.grey.withAlpha(100)) : .all(Colors.green),
                     foregroundColor: .all(Colors.white),
                     alignment: .center,
                   ),
-                  onPressed: () {
+                  onPressed:  cartProvider.isInCart(productId: product.id) ? null : () {
                     cartProvider.addToCart(product: product);
                   },
                   child: Container(

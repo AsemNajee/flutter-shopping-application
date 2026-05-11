@@ -21,6 +21,16 @@ class Main extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(home: HomePage());
+    return MaterialApp(
+      theme: ThemeData(
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: Colors.lightBlue,
+          brightness: .light,
+        ),
+      ),
+      themeMode: .dark,
+      home: HomePage(),
+      debugShowCheckedModeBanner: false,
+    );
   }
 }

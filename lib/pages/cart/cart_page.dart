@@ -16,41 +16,56 @@ class CartPage extends StatelessWidget {
     }
 
     return Scaffold(
-      body: Column(
-        children: [
-          Expanded(
-            child: ListView.builder(
-              itemCount: provider.cartProducts.length,
-              itemBuilder: (ctx, i) {
-                return cartItemBuilder(
-                  cartItem: productsInCart.elementAt(i),
-                  deleteProduct: deleteFromCart,
-                );
-              },
-            ),
-          ),
-          Container(
-            padding: .all(8),
-            child: Row(
-              children: [
-                Text(
-                  "${provider.totalPriceWithDiscount}\$",
-                  style: TextStyle(color: Colors.green),
-                ),
-                SizedBox(width: 10,),
-                Text(
-                  "${provider.totalPriceWithoutDiscount}\$",
-                  style: TextStyle(decoration: .lineThrough),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
+      body: productsInCart.isEmpty
+          ? Center(child: Text("No products in cart"))
+          : _cartGridBuilder(provider, productsInCart, deleteFromCart),
     );
   }
 
-  Widget cartItemBuilder({
+  Column _cartGridBuilder(
+    CartProvider provider,
+    List<CartItem> productsInCart,
+    void Function(CartItem cartItem) deleteFromCart,
+  ) {
+    return Column(
+      children: [
+        Expanded(
+          child: ListView.builder(
+            itemCount: provider.cartProducts.length,
+            itemBuilder: (ctx, i) {
+              return _cartItemBuilder(
+                cartItem: productsInCart.elementAt(i),
+                deleteProduct: deleteFromCart,
+              );
+            },
+          ),
+        ),
+        Container(
+          padding: .all(8),
+          child: Row(
+            children: [
+              Text(
+                "${provider.totalPriceWithDiscount}\$",
+                style: TextStyle(color: Colors.green),
+              ),
+              SizedBox(width: 10),
+              Text(
+                "${provider.totalPriceWithoutDiscount}\$",
+                style: TextStyle(decoration: .lineThrough),
+              ),
+              Expanded(child: Container()),
+              ElevatedButton(
+                onPressed: () {},
+                child: Icon(Icons.shopping_bag_outlined),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+
+  Widget _cartItemBuilder({
     required CartItem cartItem,
     required Function(CartItem) deleteProduct,
   }) {
