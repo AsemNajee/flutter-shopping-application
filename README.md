@@ -1,16 +1,42 @@
-# self_built_market
+# Flutter E Commerce Application
 
-A new Flutter project.
+application for flutter activity
 
-## Getting Started
+| Info  | Discription         |
+| ----- | ------------------- |
+| Name  | Asem Abdullah Najee |
+| Dept  | Software Engineer   |
+| Level | 3                   |
 
-This project is a starting point for a Flutter application.
+## Images
 
-A few resources to get you started if this is your first Flutter project:
+### Home
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+![alt text](./output-screenshots/image.png)
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### Categories
+
+![alt text](./output-screenshots/image-1.png)
+
+### Favorite
+
+![alt text](./output-screenshots/image-2.png)
+
+### Cart
+
+![alt text](./output-screenshots/image-3.png)
+
+### Profile
+
+![alt text](./output-screenshots/image-4.png)
+
+### Product Details
+
+#### Already in Cart
+
+![alt text](./output-screenshots/image-5.png)
+
+#### Not in cart
+
+![alt text](./output-screenshots/image-6.png)
+
