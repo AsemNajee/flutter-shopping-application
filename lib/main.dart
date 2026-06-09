@@ -1,10 +1,16 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:self_built_market/firebase_options.dart';
+import 'package:self_built_market/pages/auth/login_page.dart';
 import 'package:self_built_market/pages/home/home_page.dart';
 import 'package:self_built_market/providers/cart_provider.dart';
 import 'package:self_built_market/providers/favorite_provider.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(
     MultiProvider(
       providers: [
@@ -27,9 +33,30 @@ class Main extends StatelessWidget {
           seedColor: Colors.lightBlue,
           brightness: .light,
         ),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.lightBlue,
+          titleTextStyle: TextStyle(fontSize: 18, color: Colors.white),
+          actionsIconTheme: IconThemeData(color: Colors.white),
+          iconTheme: IconThemeData(color: Colors.white),
+        ),
       ),
-      themeMode: .dark,
-      home: HomePage(),
+      home: const HomePage(),
+      // home: StreamBuilder(
+      //   stream: FirebaseAuth.instance.authStateChanges(),
+      //   builder: (ctx, snapshot) {
+      //     if(snapshot.hasData && snapshot.data != null){
+      //       return HomePage();
+      //     }
+
+      //     if(snapshot.connectionState == .waiting){
+      //       return Scaffold(
+      //         body: CircularProgressIndicator(),
+      //       );
+      //     }
+
+      //     return LoginPage();
+      //   },
+      // ),
       debugShowCheckedModeBanner: false,
     );
   }

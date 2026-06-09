@@ -31,6 +31,22 @@
 
   <title>self_built_market</title>
   <link rel="manifest" href="manifest.json">
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script>
+    var firebaseConfig = {
+      apiKey: "...",
+      authDomain: "e-commerce.firebaseapp.com",
+      databaseURL: "https://e-commerce.firebaseio.com",
+      projectId: "e-commerce",
+      storageBucket: "e-commerce.appspot.com",
+      messagingSenderId: "...",
+      appId: "1:...:web:...",
+      measurementId: "G-...",
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+  </script>
 </head>
 <body>
   <script src="flutter_bootstrap.js" async></script>

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:self_built_market/data/repositories/categories_repository.dart';
 import 'package:self_built_market/data/model/category.dart';
 import 'package:self_built_market/data/model/product.dart';
-import 'package:self_built_market/pages/home/widgets/product_card.dart';
+import 'package:self_built_market/widgets/products_grid_view.dart';
 
 class CategoryProductsPage extends StatelessWidget {
   const CategoryProductsPage({super.key, required this.category});
@@ -13,11 +13,7 @@ class CategoryProductsPage extends StatelessWidget {
     List<Product> products = CategoriesRepository.getProductsOfCategory(category);
     return Scaffold(
       appBar: AppBar(title: Text(category.title)),
-      body: ListView.builder(
-        itemCount: products.length,
-        itemBuilder: (ctx, i) {
-        return ProductCard(product: products[i]);
-      }),
+      body: ProductsGridView(products: products),
     );
   }
 }

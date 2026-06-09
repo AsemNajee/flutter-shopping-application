@@ -18,7 +18,7 @@ class CategoriesPage extends StatelessWidget {
       child: GridView.builder(
         itemCount: categories.length,
         gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
-          maxCrossAxisExtent: 280,
+          maxCrossAxisExtent: 200,
           mainAxisSpacing: 8,
           crossAxisSpacing: 8,
         ),
@@ -32,18 +32,38 @@ class CategoriesPage extends StatelessWidget {
               );
             },
             child: Container(
-              alignment: .center,
               padding: .all(8),
               decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: .all(.circular(8)),
-                boxShadow: [BoxShadow(blurRadius: 4, color: Colors.grey[200]!)],
+                color: Colors.lightBlue,
+                borderRadius: .all(.circular(25)),
               ),
-              // height: 150,
-              width: .infinity,
-              child: Text(
-                categories[i].title,
-                style: TextStyle(fontWeight: .bold, fontSize: 18),
+              child: Column(
+                crossAxisAlignment: .start,
+                children: [
+                  Expanded(
+                    child: Container(
+                      alignment: .center,
+                      padding: .all(8),
+                      decoration: BoxDecoration(
+                        color: Colors.white.withAlpha(50),
+                        borderRadius: .only(topLeft: .circular(25), topRight: .circular(25), bottomLeft: Radius.circular(8), bottomRight: Radius.circular(8)),
+                        boxShadow: [
+                          // BoxShadow(blurRadius: 4, color: Colors.grey[200]!),
+                        ],
+                      ),
+                      // height: 150,
+                      width: .infinity,
+                      child: Text(
+                        categories[i].title,
+                        style: TextStyle(fontWeight: .bold, fontSize: 18, color: Colors.white),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text("${categories[i].description}", style: TextStyle(fontSize: 16, color: Colors.white),),
+                  ),
+                ],
               ),
             ),
           );

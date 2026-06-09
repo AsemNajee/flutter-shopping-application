@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:self_built_market/pages/home/widgets/product_card.dart';
 import 'package:self_built_market/providers/favorite_provider.dart';
+import 'package:self_built_market/widgets/products_grid_view.dart';
 
 class FavoritePage extends StatelessWidget {
   const FavoritePage({super.key});
@@ -13,12 +13,7 @@ class FavoritePage extends StatelessWidget {
     return Scaffold(
       body: provider.favoriteProducts.isEmpty
           ? Center(child: Text("No Favorites"))
-          : ListView.builder(
-              itemCount: provider.favoriteProducts.length,
-              itemBuilder: (ctx, i) {
-                return ProductCard(product: provider.favoriteProducts[i]);
-              },
-            ),
+          : ProductsGridView(products: provider.favoriteProducts)
     );
   }
 }
