@@ -16,7 +16,7 @@ class SectionWidget extends StatelessWidget {
     );
     return Container(
       padding: .all(8),
-      color: Colors.amber,
+      // color: Colors.amber,
       height: 350,
       margin: .only(bottom: 8),
       child: Column(

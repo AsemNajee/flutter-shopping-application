@@ -27,8 +27,14 @@ class Main extends StatelessWidget {
           seedColor: Colors.lightBlue,
           brightness: .light,
         ),
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.lightBlue,
+          titleTextStyle: TextStyle(
+            fontSize: 18,
+            color: Colors.white
+          ),
+        )
       ),
-      themeMode: .dark,
       home: HomePage(),
       debugShowCheckedModeBanner: false,
     );
