@@ -24,6 +24,9 @@ class CartProvider extends ChangeNotifier {
   void addToCart({required Product product, int count = 1}) {
     if (_carts.containsKey(product.id)) {
       _carts[product.id]?.count += count;
+      if(_carts[product.id]?.count == 0){
+        _carts.remove(product.id);
+      }
     } else {
       _carts[product.id] = CartItem(product: product, count: count);
     }

@@ -17,7 +17,7 @@ class SectionWidget extends StatelessWidget {
     return Container(
       padding: .all(8),
       // color: Colors.amber,
-      height: 350,
+      // height: 350,
       margin: .only(bottom: 8),
       child: Column(
         crossAxisAlignment: .start,
@@ -50,7 +50,7 @@ class SectionWidget extends StatelessWidget {
           ),
           SizedBox(height: 20),
           SizedBox(
-            height: 250,
+            height: 220,
             child: ListView.builder(
               scrollDirection: .horizontal,
               itemCount: products.length,

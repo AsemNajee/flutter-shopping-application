@@ -52,40 +52,64 @@ class _HomePageState extends State<HomePage> {
         ],
       ),
 
-      bottomNavigationBar: BottomNavigationBar(
-        selectedItemColor: Colors.lightBlue,
-        unselectedItemColor: Colors.black,
-        currentIndex: _currentTap,
-        elevation: 20,
-        onTap: (i) {
-          controller.animateToPage(
-            i,
-            duration: Duration(milliseconds: 300),
-            curve: Curves.bounceInOut,
-          );
-        },
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.maps_home_work_outlined),
-            label: "Home",
+      extendBody: true,
+      bottomNavigationBar: Container(
+        color: Colors.transparent,
+        margin: .only(bottom: 16, left: 25, right: 25, top: 4),
+        child: Container(
+          padding: .only(bottom: 8, left: 8, right: 8, top: 8),
+          decoration: BoxDecoration(
+            color: Colors.white,
+            borderRadius: .all(.circular(50)),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black26,
+                blurRadius: 10,
+                offset: Offset(0, 4),
+              ),
+            ],
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.category_outlined),
-            label: "Categories",
+          child: ClipRRect(
+            borderRadius: .all(.circular(50)),
+            child: BottomNavigationBar(
+              backgroundColor: Colors.transparent,
+              selectedItemColor: Colors.lightBlue,
+              unselectedItemColor: Colors.black,
+              showUnselectedLabels: true,
+              currentIndex: _currentTap,
+              elevation: 20,
+              onTap: (i) {
+                controller.animateToPage(
+                  i,
+                  duration: Duration(milliseconds: 300),
+                  curve: Curves.bounceInOut,
+                );
+              },
+              items: [
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.maps_home_work_outlined),
+                  label: "Home",
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.category_outlined),
+                  label: "Categories",
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.favorite_outline_rounded),
+                  label: "Favorite",
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.shopping_bag_outlined),
+                  label: "Cart",
+                ),
+                BottomNavigationBarItem(
+                  icon: Icon(Icons.supervised_user_circle_outlined),
+                  label: "Profile",
+                ),
+              ],
+            ),
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.favorite_outline_rounded),
-            label: "Favorite",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.shopping_bag_outlined),
-            label: "Cart",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.supervised_user_circle_outlined),
-            label: "Profile",
-          ),
-        ],
+        ),
       ),
     );
   }

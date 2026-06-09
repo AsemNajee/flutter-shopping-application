@@ -8,6 +8,7 @@ class ProductCard extends StatelessWidget {
   const ProductCard({super.key, required this.product});
   final Product product;
 
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -45,19 +46,24 @@ class ProductCard extends StatelessWidget {
                   Row(
                     children: [
                       Text(
-                        product.title
-                        // .substring(0, min(19, product.title.length))
-                        ,
+                        product.title,
                         style: TextStyle(fontWeight: .bold, fontSize: 14),
                         overflow: .ellipsis,
                       ),
                     ],
                   ),
+                  SizedBox(height: 15,),
                   Row(
                     mainAxisAlignment: .spaceBetween,
                     children: [
-                      Text("${product.price}\$", style: TextStyle(decoration: .lineThrough)),
-                      Text("${product.priceWithDiscount}\$"),
+                      Text(
+                        "${product.price}\$",
+                        style: TextStyle(decoration: .lineThrough),
+                      ),
+                      Text(
+                        "${product.priceWithDiscount}\$",
+                        style: TextStyle(fontWeight: .bold),
+                      ),
                     ],
                   ),
                 ],
