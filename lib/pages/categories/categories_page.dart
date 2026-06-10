@@ -2,17 +2,29 @@ import 'package:flutter/material.dart';
 import 'package:self_built_market/data/model/category.dart';
 import 'package:self_built_market/pages/category_products/category_products_page.dart';
 
-class CategoriesPage extends StatelessWidget {
+class CategoriesPage extends StatefulWidget {
   const CategoriesPage({super.key, required this.categories});
 
-  final List<Category> categories;
+  final List<String> categories;
+
+  @override
+  State<CategoriesPage> createState() => _CategoriesPageState();
+}
+
+class _CategoriesPageState extends State<CategoriesPage> {
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(body: buildCategoriesGrid(categories));
+    return Scaffold(body: buildCategoriesGrid(widget.categories));
   }
 
-  Widget buildCategoriesGrid(List<Category> categories) {
+  Widget buildCategoriesGrid(List<String> categories) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: GridView.builder(
@@ -54,14 +66,14 @@ class CategoriesPage extends StatelessWidget {
                       // height: 150,
                       width: .infinity,
                       child: Text(
-                        categories[i].title,
+                        categories[i],
                         style: TextStyle(fontWeight: .bold, fontSize: 18, color: Colors.white),
                       ),
                     ),
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text("${categories[i].description}", style: TextStyle(fontSize: 16, color: Colors.white),),
+                    child: Text("${categories[i]}", style: TextStyle(fontSize: 16, color: Colors.white),),
                   ),
                 ],
               ),

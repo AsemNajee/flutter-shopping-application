@@ -1,19 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:self_built_market/data/model/category.dart';
 import 'package:self_built_market/data/model/product.dart';
-import 'package:self_built_market/data/repositories/categories_repository.dart';
 import 'package:self_built_market/pages/category_products/category_products_page.dart';
 import 'package:self_built_market/pages/home/widgets/product_card.dart';
 
-class SectionWidget extends StatelessWidget {
-  const SectionWidget({super.key, required this.category});
-  final Category category;
+class SectionWidget extends StatefulWidget {
+  const SectionWidget({super.key, required this.category, required this.products});
+  final String category;
+  final List<Product> products;
+
+  @override
+  State<SectionWidget> createState() => _SectionWidgetState();
+}
+
+class _SectionWidgetState extends State<SectionWidget> {
+  // List<Product> products = [];
 
   @override
   Widget build(BuildContext context) {
-    final List<Product> products = CategoriesRepository.getProductsOfCategory(
-      category,
-    );
     return Container(
       padding: .all(8),
       // color: Colors.amber,
@@ -29,10 +32,10 @@ class SectionWidget extends StatelessWidget {
                   crossAxisAlignment: .start,
                   children: [
                     Text(
-                      category.title,
+                      widget.category,
                       style: TextStyle(fontSize: 20, fontWeight: .bold),
                     ),
-                    Text(category.description),
+                    Text(widget.category),
                   ],
                 ),
               ),
@@ -40,7 +43,8 @@ class SectionWidget extends StatelessWidget {
                 onPressed: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (c) => CategoryProductsPage(category: category),
+                      builder: (c) =>
+                          CategoryProductsPage(category: widget.category),
                     ),
                   );
                 },
@@ -53,10 +57,10 @@ class SectionWidget extends StatelessWidget {
             height: 220,
             child: ListView.builder(
               scrollDirection: .horizontal,
-              itemCount: products.length,
+              itemCount: widget.products.length,
               itemExtent: 250,
               itemBuilder: (ctx, index) {
-                return ProductCard(product: products[index]);
+                return ProductCard(product: widget.products[index]);
               },
             ),
           ),

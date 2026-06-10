@@ -1,4 +1,5 @@
 
+@Deprecated("this class is deprecated and will be removed in future versions")
 class Category {
   static int autoIncrement = 1;
   final String title;
