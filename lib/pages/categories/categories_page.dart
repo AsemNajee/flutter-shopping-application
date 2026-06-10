@@ -34,7 +34,7 @@ class CategoriesPage extends StatelessWidget {
             child: Container(
               padding: .all(8),
               decoration: BoxDecoration(
-                color: Colors.lightBlue,
+                color: Theme.of(context).colorScheme.primary,
                 borderRadius: .all(.circular(25)),
               ),
               child: Column(

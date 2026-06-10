@@ -8,7 +8,6 @@ class ProductCard extends StatelessWidget {
   const ProductCard({super.key, required this.product});
   final Product product;
 
-
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -20,7 +19,6 @@ class ProductCard extends StatelessWidget {
         );
       },
       child: Container(
-        width: 200,
         decoration: BoxDecoration(
           borderRadius: .all(.circular(8)),
           color: Colors.white,
@@ -28,13 +26,14 @@ class ProductCard extends StatelessWidget {
         margin: .fromLTRB(8, 8, 8, 8),
         child: Column(
           children: [
-            Container(
-              margin: .all(4),
-              height: 120,
-              width: .infinity,
-              child: ClipRRect(
-                borderRadius: .circular(8),
-                child: Image.asset(product.image, fit: .cover),
+            Expanded(
+              child: Container(
+                margin: .all(4),
+                width: .infinity,
+                child: ClipRRect(
+                  borderRadius: .circular(8),
+                  child: Image.asset(product.image, fit: .cover),
+                ),
               ),
             ),
             Container(
@@ -45,24 +44,34 @@ class ProductCard extends StatelessWidget {
                 children: [
                   Row(
                     children: [
-                      Text(
-                        product.title,
-                        style: TextStyle(fontWeight: .bold, fontSize: 14),
-                        overflow: .ellipsis,
+                      Expanded(
+                        child: Text(
+                          product.title,
+                          style: TextStyle(fontWeight: .bold, fontSize: 14),
+                          overflow: .ellipsis,
+                        ),
                       ),
                     ],
                   ),
-                  SizedBox(height: 15,),
+                  SizedBox(height: 15),
                   Row(
                     mainAxisAlignment: .spaceBetween,
                     children: [
-                      Text(
-                        "${product.price}\$",
-                        style: TextStyle(decoration: .lineThrough),
-                      ),
-                      Text(
-                        "${product.priceWithDiscount}\$",
-                        style: TextStyle(fontWeight: .bold),
+                      Expanded(
+                        child: Wrap(
+                          spacing: 8,
+                          direction: .horizontal,
+                          children: [
+                            Text(
+                              "${product.price}\$",
+                              style: TextStyle(decoration: .lineThrough),
+                            ),
+                            Text(
+                              "${product.priceWithDiscount}\$",
+                              style: TextStyle(fontWeight: .bold),
+                            ),
+                          ],
+                        ),
                       ),
                     ],
                   ),

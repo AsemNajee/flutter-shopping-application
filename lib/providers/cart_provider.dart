@@ -8,7 +8,7 @@ class CartProvider extends ChangeNotifier {
 
   double get totalPriceWithoutDiscount {
     double totalPrice = 0;
-    _carts.forEach((k, v) => totalPrice += v.product.price);
+    _carts.forEach((k, v) => totalPrice += (v.product.price * v.count));
     return totalPrice.roundToDouble();
   }
 
