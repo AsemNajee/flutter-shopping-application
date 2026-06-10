@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:self_built_market/data/model/product.dart';
 import 'package:self_built_market/pages/product_details/product_details_page.dart';
@@ -12,6 +13,7 @@ class ProductCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
+        print(product.image);
         Navigator.of(context).push(
           MaterialPageRoute(
             builder: (context) => ProductDetailsPage(product: product),
@@ -32,7 +34,13 @@ class ProductCard extends StatelessWidget {
                 width: .infinity,
                 child: ClipRRect(
                   borderRadius: .circular(8),
-                  child: Image.asset(product.image, fit: .cover),
+                  child: CachedNetworkImage(
+                    imageUrl: product.image,
+                    fit: BoxFit.cover,
+                    placeholder: (context, url) => Center(child: SizedBox(height: 60, width: 60, child: CircularProgressIndicator())),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
+                  ),
+                  // child: Image.asset(product.image, fit: .cover),
                 ),
               ),
             ),

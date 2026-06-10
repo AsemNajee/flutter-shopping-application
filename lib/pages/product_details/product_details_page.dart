@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:self_built_market/data/model/product.dart';
@@ -65,7 +66,13 @@ class ProductDetailsPage extends StatelessWidget {
                     ),
                     child: ClipRRect(
                       borderRadius: .all(.circular(8)),
-                      child: Image.asset(product.image),
+                      child: CachedNetworkImage(
+                        imageUrl: product.image,
+                        fit: BoxFit.cover,
+                        placeholder: (context, url) =>
+                            CircularProgressIndicator(),
+                        errorWidget: (context, url, error) => Icon(Icons.error),
+                      ),
                     ),
                   ),
                   Container(

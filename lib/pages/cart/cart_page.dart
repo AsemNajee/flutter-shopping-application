@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:self_built_market/data/model/cart_item.dart';
@@ -63,7 +64,7 @@ class CartPage extends StatelessWidget {
                     color: Colors.grey,
                   ),
                 ),
-                Expanded(child: Container()),
+                // Expanded(child: Container()),
                 ElevatedButton.icon(
                   label: Text("Buy Now"),
                   onPressed: () {},
@@ -100,7 +101,18 @@ class CartPage extends StatelessWidget {
                 height: 110,
                 child: ClipRRect(
                   borderRadius: .all(.circular(16)),
-                  child: Image.asset(cartItem.product.image, fit: .cover),
+                  child: CachedNetworkImage(
+                    imageUrl: cartItem.product.image,
+                    fit: BoxFit.cover,
+                    placeholder: (context, url) => Center(
+                      child: SizedBox(
+                        height: 60,
+                        width: 60,
+                        child: CircularProgressIndicator(),
+                      ),
+                    ),
+                    errorWidget: (context, url, error) => Icon(Icons.error),
+                  ),
                 ),
               ),
               Expanded(

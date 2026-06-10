@@ -1,12 +1,8 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:self_built_market/firebase_options.dart';
-import 'package:self_built_market/pages/auth/login_page.dart';
 import 'package:self_built_market/pages/home/home_page.dart';
 import 'package:self_built_market/providers/cart_provider.dart';
 import 'package:self_built_market/providers/favorite_provider.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:self_built_market/theme.dart';
 
 void main() async {

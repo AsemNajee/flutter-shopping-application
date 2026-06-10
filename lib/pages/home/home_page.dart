@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:self_built_market/data/model/product.dart';
 import 'package:self_built_market/data/repositories/categories_repository.dart';
 import 'package:self_built_market/data/model/category.dart';
+import 'package:self_built_market/data/repositories/categories_repository_http.dart';
 import 'package:self_built_market/pages/cart/cart_page.dart';
 import 'package:self_built_market/pages/categories/categories_page.dart';
 import 'package:self_built_market/pages/favorite/favorite_page.dart';
@@ -17,8 +19,9 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   int _currentTap = 0;
   PageController controller = PageController();
+  Map<String, List<Product>> categoriesWithSliceProducts = {};
 
-  List<Category> get categories => CategoriesRepository.getCategories;
+  // List<Category> get categoriesWithSliceProducts => CategoriesRepository.getCategories;
 
   void changeTap(int tap) {
     setState(() {
@@ -26,8 +29,24 @@ class _HomePageState extends State<HomePage> {
     });
   }
 
+  void fetchData() async {
+    categoriesWithSliceProducts =
+        await CategoriesRepositoryHttp.fetchCategoriesWithSliceOfProducts();
+    if (mounted) {
+      setState(() {});
+    }
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    fetchData();
+  }
+
   @override
   Widget build(BuildContext context) {
+    List<String> categoriesNames = categoriesWithSliceProducts.keys.toList();
     return Scaffold(
       backgroundColor: Colors.grey[100],
       appBar: AppBar(title: Text("Market Project")),
@@ -41,11 +60,13 @@ class _HomePageState extends State<HomePage> {
         },
         children: [
           ListView.builder(
-            itemCount: categories.length,
-            itemBuilder: (context, index) =>
-                SectionWidget(category: categories[index]),
+            itemCount: categoriesWithSliceProducts.length,
+            itemBuilder: (context, index) => SectionWidget(
+              category: categoriesNames[index],
+              products: categoriesWithSliceProducts[categoriesNames[index]]!,
+            ),
           ),
-          CategoriesPage(categories: categories),
+          CategoriesPage(categories: categoriesNames),
           FavoritePage(),
           CartPage(),
           ProfilePage(),
