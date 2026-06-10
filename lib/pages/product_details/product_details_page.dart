@@ -78,11 +78,11 @@ class ProductDetailsPage extends StatelessWidget {
                   Container(
                     width: .infinity,
                     padding: const EdgeInsets.all(16.0),
-                    height: 80,
+                    // height: 80,
                     child: Center(
                       child: Text(
-                        product.title,
-                        style: TextStyle(fontSize: 20),
+                        product.description!,
+                        style: TextStyle(fontSize: 16),
                       ),
                     ),
                   ),

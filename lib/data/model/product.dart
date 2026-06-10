@@ -115,10 +115,10 @@ class Product {
     return Product(
       title: json['title'],
       price: json['price'].toDouble(),
-      // discount: json['discount'].toDouble(),
+      discount: json['discountPercentage'].toDouble(),
       image: json['thumbnail'] ?? '',
       category: json['category'] ?? '',
-      categoryId: Random().nextInt(100000) ?? 55,
+      categoryId: Random().nextInt(100000) ,
       // categoryId: json['categoryId'] ?? '',
       description: json['description'] ?? '',
       brand: json['brand'] ?? '',
