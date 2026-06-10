@@ -112,9 +112,9 @@ class ProductDetailsPage extends StatelessWidget {
           Row(
             children: [
               Container(
-                padding: .all(16),
-                margin: .all(16),
-                child: ElevatedButton(
+                padding: .all(8),
+                margin: .all(8),
+                child: ElevatedButton.icon(
                   style: ButtonStyle(
                     backgroundColor:
                         cartProvider.isInCart(productId: product.id)
@@ -128,17 +128,8 @@ class ProductDetailsPage extends StatelessWidget {
                       : () {
                           cartProvider.addToCart(product: product);
                         },
-                  child: Container(
-                    padding: .all(16),
-                    child: Row(
-                      mainAxisSize: .min,
-                      children: [
-                        Icon(Icons.shopify_rounded, size: 30),
-                        SizedBox(width: 20),
-                        Text("Add to cart", style: TextStyle(fontSize: 20)),
-                      ],
-                    ),
-                  ),
+                  label: Text("Add to cart", style: TextStyle(fontSize: 16, height: 3)),
+                  icon: Icon(Icons.shopify_rounded, size: 25),
                 ),
               ),
               cartProvider.isInCart(productId: product.id)

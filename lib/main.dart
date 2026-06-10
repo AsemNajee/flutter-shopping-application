@@ -7,10 +7,11 @@ import 'package:self_built_market/pages/home/home_page.dart';
 import 'package:self_built_market/providers/cart_provider.dart';
 import 'package:self_built_market/providers/favorite_provider.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:self_built_market/theme.dart';
 
 void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  // WidgetsFlutterBinding.ensureInitialized();
+  // await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(
     MultiProvider(
       providers: [
@@ -28,11 +29,17 @@ class Main extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      themeMode: .light,
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: Colors.lightBlue,
-          brightness: .light,
+        bottomNavigationBarTheme: BottomNavigationBarThemeData(
+          backgroundColor: Colors.transparent,
+          selectedItemColor: Colors.lightBlue,
+          unselectedItemColor: Colors.black,
+          showUnselectedLabels: true,
+          elevation: 20,
         ),
+        useMaterial3: true,
+        colorScheme: MaterialTheme.lightScheme(),
         appBarTheme: const AppBarTheme(
           backgroundColor: Colors.lightBlue,
           titleTextStyle: TextStyle(fontSize: 18, color: Colors.white),

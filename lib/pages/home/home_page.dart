@@ -72,12 +72,7 @@ class _HomePageState extends State<HomePage> {
           child: ClipRRect(
             borderRadius: .all(.circular(50)),
             child: BottomNavigationBar(
-              backgroundColor: Colors.transparent,
-              selectedItemColor: Colors.lightBlue,
-              unselectedItemColor: Colors.black,
-              showUnselectedLabels: true,
               currentIndex: _currentTap,
-              elevation: 20,
               onTap: (i) {
                 controller.animateToPage(
                   i,

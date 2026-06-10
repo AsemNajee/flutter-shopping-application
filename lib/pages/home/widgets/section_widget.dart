@@ -54,6 +54,7 @@ class SectionWidget extends StatelessWidget {
             child: ListView.builder(
               scrollDirection: .horizontal,
               itemCount: products.length,
+              itemExtent: 250,
               itemBuilder: (ctx, index) {
                 return ProductCard(product: products[index]);
               },

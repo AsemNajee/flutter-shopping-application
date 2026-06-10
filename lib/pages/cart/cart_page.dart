@@ -39,14 +39,16 @@ class CartPage extends StatelessWidget {
                 return _cartItemBuilder(
                   cartItem: productsInCart.elementAt(i),
                   deleteProduct: deleteFromCart,
-                  cartProvider: provider
+                  cartProvider: provider,
                 );
               },
             ),
           ),
           Container(
             padding: .only(top: 8, bottom: 100, left: 16, right: 16),
-            child: Row(
+            child: Wrap(
+              runSpacing: 8,
+              spacing: 8,
               children: [
                 Text(
                   "\$${provider.totalPriceWithDiscount}",
@@ -55,7 +57,11 @@ class CartPage extends StatelessWidget {
                 SizedBox(width: 10),
                 Text(
                   "\$${provider.totalPriceWithoutDiscount}",
-                  style: TextStyle(decoration: .lineThrough, fontSize: 18, color: Colors.grey),
+                  style: TextStyle(
+                    decoration: .lineThrough,
+                    fontSize: 18,
+                    color: Colors.grey,
+                  ),
                 ),
                 Expanded(child: Container()),
                 ElevatedButton.icon(
@@ -74,7 +80,7 @@ class CartPage extends StatelessWidget {
   Widget _cartItemBuilder({
     required CartItem cartItem,
     required Function(CartItem) deleteProduct,
-    required CartProvider cartProvider
+    required CartProvider cartProvider,
   }) {
     return Container(
       padding: .all(8),
@@ -101,7 +107,7 @@ class CartPage extends StatelessWidget {
                 child: Container(
                   padding: .all(8),
                   alignment: .centerLeft,
-                  height: 110,
+                  // height: 110,
                   child: Column(
                     crossAxisAlignment: .start,
                     children: [
@@ -116,7 +122,7 @@ class CartPage extends StatelessWidget {
                       ),
                       SizedBox(height: 15),
                       Text(
-                        "\$${cartItem.product.price}",
+                        "\$${cartItem.product.priceWithDiscount}",
                         style: TextStyle(
                           fontWeight: .bold,
                           fontSize: 16,
@@ -133,15 +139,11 @@ class CartPage extends StatelessWidget {
                   color: Colors.grey.withAlpha(100),
                   borderRadius: .all(.circular(16)),
                 ),
-                child: Row(
-                  children: [
-                    IconButton(
-                      onPressed: () {
-                        deleteProduct(cartItem);
-                      },
-                      icon: Icon(Icons.delete),
-                    ),
-                  ],
+                child: IconButton(
+                  onPressed: () {
+                    deleteProduct(cartItem);
+                  },
+                  icon: Icon(Icons.delete),
                 ),
               ),
             ],
@@ -154,7 +156,7 @@ class CartPage extends StatelessWidget {
           Row(
             children: [
               SizedBox(height: 10),
-              Text("Total Price: ", style: TextStyle(color: Colors.grey)),
+              Text("Total: ", style: TextStyle(color: Colors.grey)),
               SizedBox(height: 10),
               Text(
                 "\$${cartItem.totalPrice}",
@@ -165,7 +167,10 @@ class CartPage extends StatelessWidget {
                 ),
               ),
               Expanded(child: Container()),
-              CartCounter(cartProvider: cartProvider, product: cartItem.product)
+              CartCounter(
+                cartProvider: cartProvider,
+                product: cartItem.product,
+              ),
             ],
           ),
         ],
