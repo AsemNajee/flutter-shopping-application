@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:self_built_market/data/model/product.dart';
-import 'package:self_built_market/data/repositories/categories_repository_http.dart';
+import 'package:self_built_market/data/repositories/categories_repository.dart';
 import 'package:self_built_market/widgets/products_grid_view.dart';
 
 class CategoryProductsPage extends StatefulWidget {
@@ -15,7 +15,7 @@ class _CategoryProductsPageState extends State<CategoryProductsPage> {
   List<Product> products = [];
 
   void fetchData() async {
-    products = await CategoriesRepositoryHttp.fetchProductsByCategory(
+    products = CategoriesRepository.instance.fetchProductsByCategory(
       widget.category,
     );
     setState(() {});

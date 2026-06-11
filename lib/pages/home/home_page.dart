@@ -30,8 +30,8 @@ class _HomePageState extends State<HomePage> {
   }
 
   void fetchData() async {
-    categoriesWithSliceProducts =
-        await CategoriesRepositoryHttp.fetchCategoriesWithSliceOfProducts();
+    categoriesWithSliceProducts = await CategoriesRepository.instance
+        .fetchCategoriesWithSliceOfProducts();
     if (mounted) {
       setState(() {});
     }
@@ -59,13 +59,16 @@ class _HomePageState extends State<HomePage> {
           });
         },
         children: [
-          ListView.builder(
-            itemCount: categoriesWithSliceProducts.length,
-            itemBuilder: (context, index) => SectionWidget(
-              category: categoriesNames[index],
-              products: categoriesWithSliceProducts[categoriesNames[index]]!,
-            ),
-          ),
+          categoriesWithSliceProducts.isEmpty
+              ? Center(child: SizedBox(height: 60, width: 60, child: CircularProgressIndicator()))
+              : ListView.builder(
+                  itemCount: categoriesWithSliceProducts.length,
+                  itemBuilder: (context, index) => SectionWidget(
+                    category: categoriesNames[index],
+                    products:
+                        categoriesWithSliceProducts[categoriesNames[index]]!,
+                  ),
+                ),
           CategoriesPage(categories: categoriesNames),
           FavoritePage(),
           CartPage(),

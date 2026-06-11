@@ -1,7 +1,26 @@
 import 'package:flutter/material.dart';
+import 'package:self_built_market/main.dart';
+import 'package:self_built_market/pages/auth/login_page.dart';
 
-class ProfilePage extends StatelessWidget {
-  const ProfilePage({super.key});
+class ProfilePage extends StatefulWidget {
+  ProfilePage({super.key});
+
+  @override
+  State<ProfilePage> createState() => _ProfilePageState();
+}
+
+class _ProfilePageState extends State<ProfilePage> {
+  bool _loading = false;
+
+  void _logout() async {
+    setState(() {
+      _loading = true;
+    });
+    await supabase.auth.signOut();
+    if(mounted){
+      Navigator.of(context).pushReplacement(MaterialPageRoute(builder: (c) => LoginPage()));
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -59,7 +78,14 @@ class ProfilePage extends StatelessWidget {
           Expanded(child: Container()),
           Container(
             margin: .only(bottom: 200),
-            child: ElevatedButton(onPressed: () {}, child: Text("Logout")),
+            child: _loading
+                ? const CircularProgressIndicator()
+                : ElevatedButton(
+                    onPressed: () {
+                      _logout();
+                    },
+                    child: Text("Logout"),
+                  ),
           ),
         ],
       ),
