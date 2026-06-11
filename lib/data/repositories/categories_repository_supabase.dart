@@ -1,23 +1,18 @@
 import 'package:self_built_market/data/model/product.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
-
 import 'package:self_built_market/data/repositories/db_repository.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
-class CategoriesRepositoryHttp implements DbRepository {
-  static final String _baseUrl = 'https://dummyjson.com/products';
+class CategoriesRepositorySupabase implements DbRepository {
   static Map<String, List<Product>>? _categoriesWithProductsCache;
 
   static List<Product>? _allData;
-  // static Map<String, List<Product>>? _sliceOfProductsCache;
 
-  static Future<List<Product>?> _fetchData() async {
+  Future<List<Product>?> _fetchData() async {
     if (_allData == null) {
-      final response = await http.get(Uri.parse("$_baseUrl?limit=200"));
-      if (response.statusCode == 200) {
-        final data = json.decode(response.body);
+      final response = await Supabase.instance.client.from("products").select();
+      if (response.isNotEmpty) {
         List<Product> products = List<Product>.from(
-          data['products'].map((p) => Product.fromJson(p))
+          response.map((p) => Product.fromJson(p)),
         );
         _allData = products;
       }
@@ -34,14 +29,15 @@ class CategoriesRepositoryHttp implements DbRepository {
   }
 
   // filter categories with products with 10 products for each category
-  Future<Map<String, List<Product>>> fetchCategoriesWithSliceOfProducts() async {
-    if(_categoriesWithProductsCache != null){
+  Future<Map<String, List<Product>>>
+  fetchCategoriesWithSliceOfProducts() async {
+    if (_categoriesWithProductsCache != null) {
       return _categoriesWithProductsCache!;
     }
 
     Map<String, List<Product>> filteredCategoriesWithProducts = {};
     (await _fetchData())?.forEach((product) {
-      if(!filteredCategoriesWithProducts.containsKey(product.category)){
+      if (!filteredCategoriesWithProducts.containsKey(product.category)) {
         filteredCategoriesWithProducts[product.category] = [];
       }
       filteredCategoriesWithProducts[product.category]?.add(product);

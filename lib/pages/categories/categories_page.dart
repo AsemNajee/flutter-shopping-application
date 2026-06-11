@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:self_built_market/data/model/category.dart';
+import 'package:self_built_market/data/repositories/categories_repository.dart';
 import 'package:self_built_market/data/repositories/categories_repository_http.dart';
 import 'package:self_built_market/pages/category_products/category_products_page.dart';
 
@@ -68,7 +69,7 @@ class _CategoriesPageState extends State<CategoriesPage> {
                   ),
                   Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: Text("${CategoriesRepositoryHttp.fetchProductsByCategory(categories[i]).length} Items", style: TextStyle(fontSize: 16, color: Colors.white),),
+                    child: Text("${CategoriesRepository.instance.fetchProductsByCategory(categories[i]).length} Items", style: TextStyle(fontSize: 16, color: Colors.white),),
                   ),
                 ],
               ),

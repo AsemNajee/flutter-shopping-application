@@ -1,11 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:self_built_market/pages/home/home_page.dart';
+import 'package:self_built_market/pages/insert.dart';
 import 'package:self_built_market/providers/cart_provider.dart';
 import 'package:self_built_market/providers/favorite_provider.dart';
 import 'package:self_built_market/theme.dart';
+import 'package:supabase_flutter/supabase_flutter.dart';
 
 void main() async {
+  await Supabase.initialize(
+    url: 'https://kaamjczegbbqszwiojry.supabase.co',
+    anonKey: 'sb_publishable_zvMRP2Kg70luh-egTrsUig_FcnhGdy0',
+  );
   // WidgetsFlutterBinding.ensureInitialized();
   // await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   runApp(
@@ -44,6 +50,7 @@ class Main extends StatelessWidget {
         ),
       ),
       home: const HomePage(),
+      // home: const Insert(),
       // home: StreamBuilder(
       //   stream: FirebaseAuth.instance.authStateChanges(),
       //   builder: (ctx, snapshot) {

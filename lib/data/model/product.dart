@@ -133,8 +133,8 @@ class Product {
       returnPolicy: json['returnPolicy'] ?? '',
       minimumOrderQuantity: json['minimumOrderQuantity'] ?? '',
       // meta: json['meta'] ?? '',
-      tags: List<String>.from(json['tags'] ?? []),
-      images: List<String>.from(json['images'] ?? []),
+      // tags: List<String>.from(json['tags'] ?? []),
+      // images: List<String>.from(json['images'] ?? []),
     );
   }
 
