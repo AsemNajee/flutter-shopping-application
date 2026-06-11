@@ -20,6 +20,7 @@ class CategoriesRepositorySupabase implements DbRepository {
     return _allData;
   }
 
+  @override
   List<Product> fetchProductsByCategory(String category) {
     if (_categoriesWithProductsCache != null &&
         _categoriesWithProductsCache!.containsKey(category)) {
@@ -29,6 +30,7 @@ class CategoriesRepositorySupabase implements DbRepository {
   }
 
   // filter categories with products with 10 products for each category
+  @override
   Future<Map<String, List<Product>>>
   fetchCategoriesWithSliceOfProducts() async {
     if (_categoriesWithProductsCache != null) {
