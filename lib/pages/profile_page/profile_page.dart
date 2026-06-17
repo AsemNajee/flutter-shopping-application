@@ -47,31 +47,18 @@ class _ProfilePageState extends State<ProfilePage> {
             child: Column(
               children: [
                 Text(
-                  "Asem Najee",
+                  supabase.auth.currentUser!.userMetadata?['name'],
                   style: TextStyle(fontSize: 20, fontWeight: .bold),
                 ),
 
                 Container(
                   padding: .all(8),
                   child: Text(
-                    "asem.a.najee@gmail.com",
+                    supabase.auth.currentUser!.email!,
                     textAlign: .center,
                     style: TextStyle(color: Colors.grey, fontSize: 16),
                   ),
                 ),
-
-                // Container(
-                //   padding: .all(16),
-                //   child: Row(
-                //     mainAxisAlignment: .spaceEvenly,
-                //     children: [
-                //       Icon(Icons.telegram),
-                //       Icon(Icons.telegram),
-                //       Icon(Icons.telegram),
-                //       Icon(Icons.telegram),
-                //     ],
-                //   ),
-                // ),
               ],
             ),
           ),

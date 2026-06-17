@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:self_built_market/pages/auth/login_page.dart';
+import 'package:self_built_market/pages/auth/sign_up_page.dart';
 import 'package:self_built_market/pages/home/home_page.dart';
 import 'package:self_built_market/pages/insert.dart';
 import 'package:self_built_market/providers/cart_provider.dart';

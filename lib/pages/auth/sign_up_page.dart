@@ -1,38 +1,42 @@
 import 'package:flutter/material.dart';
 import 'package:self_built_market/main.dart';
-import 'package:self_built_market/pages/auth/sign_up_page.dart';
+import 'package:self_built_market/pages/auth/login_page.dart';
 import 'package:self_built_market/pages/home/home_page.dart';
 import 'package:supabase_flutter/supabase_flutter.dart';
 
-class LoginPage extends StatefulWidget {
-  const LoginPage({super.key});
+class SignUpPage extends StatefulWidget {
+  const SignUpPage({super.key});
 
   @override
-  State<LoginPage> createState() => _LoginScreenState();
+  State<SignUpPage> createState() => _SignUpScreenState();
 }
 
-class _LoginScreenState extends State<LoginPage> {
+class _SignUpScreenState extends State<SignUpPage> {
+  final _nameController = TextEditingController();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
   final _formKey = GlobalKey<FormState>();
   bool _isLoading = false;
 
-  Future<void> _login() async {
+  Future<void> _signUp() async {
     if (!_formKey.currentState!.validate()) return;
 
     setState(() => _isLoading = true);
 
     try {
-      final response = await supabase.auth.signInWithPassword(
+      final response = await supabase.auth.signUp(
         email: _emailController.text.trim(),
         password: _passwordController.text.trim(),
+        data: {
+          'name': _nameController.text.trim(), // ✅ حفظ الاسم
+        },
       );
 
       if (response.user != null) {
         ScaffoldMessenger.of(
           context,
-        ).showSnackBar(const SnackBar(content: Text('تم تسجيل الدخول بنجاح')));
+        ).showSnackBar(const SnackBar(content: Text('تم إنشاء الحساب بنجاح')));
 
         Navigator.pushReplacement(
           context,
@@ -51,7 +55,7 @@ class _LoginScreenState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('تسجيل الدخول')),
+      appBar: AppBar(title: const Text('إنشاء حساب')),
       body: Padding(
         padding: const EdgeInsets.all(16),
         child: Form(
@@ -59,6 +63,19 @@ class _LoginScreenState extends State<LoginPage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
+              // ✅ الاسم
+              TextFormField(
+                controller: _nameController,
+                decoration: _buildInputDecoration(
+                  label: 'الاسم',
+                  hint: 'أدخل اسمك',
+                  icon: Icons.person,
+                ),
+                validator: (v) => v == null || v.isEmpty ? 'أدخل الاسم' : null,
+              ),
+              const SizedBox(height: 16),
+
+              // email
               TextFormField(
                 controller: _emailController,
                 decoration: _buildInputDecoration(
@@ -70,6 +87,7 @@ class _LoginScreenState extends State<LoginPage> {
               ),
               const SizedBox(height: 16),
 
+              // password
               TextFormField(
                 controller: _passwordController,
                 obscureText: true,
@@ -79,7 +97,7 @@ class _LoginScreenState extends State<LoginPage> {
                   icon: Icons.lock,
                 ),
                 validator: (v) =>
-                    v == null || v.isEmpty ? 'أدخل كلمة المرور' : null,
+                    v == null || v.length < 6 ? 'كلمة المرور ضعيفة' : null,
               ),
 
               const SizedBox(height: 24),
@@ -87,18 +105,18 @@ class _LoginScreenState extends State<LoginPage> {
               _isLoading
                   ? const CircularProgressIndicator()
                   : ElevatedButton(
-                      onPressed: _login,
-                      child: const Text('تسجيل الدخول'),
+                      onPressed: _signUp,
+                      child: const Text('إنشاء حساب'),
                     ),
 
               TextButton(
                 onPressed: () {
                   Navigator.pushReplacement(
                     context,
-                    MaterialPageRoute(builder: (_) => const SignUpPage()),
+                    MaterialPageRoute(builder: (_) => const LoginPage()),
                   );
                 },
-                child: const Text('ليس لديك حساب؟ إنشاء حساب'),
+                child: const Text('لديك حساب؟ تسجيل الدخول'),
               ),
             ],
           ),
