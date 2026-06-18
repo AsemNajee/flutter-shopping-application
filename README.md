@@ -12,4 +12,10 @@ application for flutter activity
 
 Application is automatically deployed to github pages using github actions
 
-[Link of application](https://asemnajee.github.io/flutter-shopping-application/)
+## Application with supabase and auth
+
+[Link of application](https://flutter-market.asemnajee.workers.dev/)
+
+## Application only with http REST API
+
+[Link of applicaiton](https://flutter-market-http.asemnajee.workers.dev/)
